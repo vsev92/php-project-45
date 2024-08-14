@@ -14,5 +14,6 @@
             "email": "vsev92@mail.ru"
         }
     ],
-    "require": {}
+    "require": {},
+    "bin": ["bin/brain-games"]
 }
