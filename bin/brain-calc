@@ -9,5 +9,5 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-$gameEven = new BrainGames\Engine\GameEven;
-$gameEven->brainGameMain();
+$gameCalc = new BrainGames\Engine\GameCalc;
+$gameCalc->brainGameMain();

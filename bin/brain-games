@@ -9,4 +9,5 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-BrainGames\Cli\greeting();
+$gameBase = new BrainGames\Engine\GameBase;
+$gameBase->greeting();
