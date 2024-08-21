@@ -12,4 +12,7 @@ https://asciinema.org/a/0dknlR99QAzbtq1pNWCUiBnJt
 brain-gcd asciinema:
 https://asciinema.org/a/BeQYH1foadcxJDVGhM4doMSHg
 
+brain-progression asciinema:
+https://asciinema.org/a/6N99t1jomsVKLWrMFqBzekCyG
+
 
