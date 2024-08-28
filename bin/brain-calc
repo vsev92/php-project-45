@@ -8,6 +8,7 @@ if (file_exists($autoloadPath1)) {
 } else {
     require_once $autoloadPath2;
 }
-
-$gameCalc = new BrainGames\Engine\GameCalc;
-$gameCalc->brainGameMain();
+$gameTitle = BrainGames\Games\Calc\getGameTitle();
+$questions = BrainGames\Games\Calc\getQuestionsForGame();
+$correctAnswers = BrainGames\Games\Calc\getCorrectAnswersForGame($questions);
+BrainGames\Engine\playBrainGame($gameTitle, $questions, $correctAnswers);

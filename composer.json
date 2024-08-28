@@ -4,9 +4,6 @@
     "type": "project",
     "license": "MIT",
     "autoload": {
-        "psr-4": {
-            "BrainGames\\": "src/"
-        },
         "files": [
             "src/Cli.php",
             "src/Engine.php",

@@ -5,70 +5,41 @@ namespace BrainGames\Engine;
 use function cli\line;
 use function cli\prompt;
 
-class GameBase
+function greet()
 {
-    public function greeting()
-    {
-        line('Welcome to the Brain Game!');
-        $name = prompt('May I have your name?');
-        line("Hello, %s!", $name);
-        return $name;
-    }
+    line('Welcome to the Brain Game!');
+    $name = prompt('May I have your name?');
+    line("Hello, %s!", $name);
+    return $name;
+}
 
-    public function getGameTitle()
-    {
-        return 'This is the BaseGame';
-    }
-
-    public function getQuestion()
-    {
-        return "Question: ";
-    }
-
-    public function getCorrectAnsver($question)
-    {
-        return '';
-    }
-    public function isAnsverValid($ansver)
-    {
+function isCorrectAnswer($question, $correctAnswer, $userAnswer)
+{
+    if ($userAnswer === $correctAnswer) {
+        line("Correct!");
         return true;
+    } else {
+        line("'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.");
+         return false;
     }
+}
 
-    public function isCorrectAnswer($question, $ansver)
-    {
-        $correctAnsver = $this->getCorrectAnsver($question);
-        if ($this->isAnsverValid($ansver)) {
-            if ($ansver == $correctAnsver) {
-                line("Correct!");
-                return true;
-            } else {
-                line("'{$ansver}' is wrong answer ;(. Correct answer was '{$correctAnsver}'.");
-                return false;
-            }
+function playBrainGame($gameTitle, $questions, $correctAnswers)
+{
+    $name = greet();
+    line($gameTitle);
+    $correctUserAnswersCount = 0;
+    for ($i = 0; $i < 3; $i++) {
+        line($questions[$i]);
+        $userAnswer = prompt('Your answer');
+        if (isCorrectAnswer($questions[$i], $correctAnswers[$i], $userAnswer)) {
+            $correctUserAnswersCount++;
         } else {
-            line("'{$ansver}' is wrong answer ;(. Correct answer was '{$correctAnsver}'.");
-            return false;
+            line("Let's try again, {$name}!");
+            break;
         }
     }
-
-    public function brainGameMain()
-    {
-        $name = $this->greeting();
-        line($this->getGameTitle());
-        $trueResponcecount = 0;
-        for ($i = 0; $i < 3; $i++) {
-            $question = $this->getQuestion();
-            line($question);
-            $ansver = prompt('Your answer');
-            if ($this->isCorrectAnswer($question, $ansver)) {
-                $trueResponcecount++;
-            } else {
-                line("Let's try again, {$name}!");
-                break;
-            }
-        }
-        if ($trueResponcecount === 3) {
-            line("Congratulations, {$name}!");
-        }
+    if ($correctUserAnswersCount === 3) {
+        line("Congratulations, {$name}!");
     }
 }

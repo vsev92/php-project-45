@@ -1,43 +1,62 @@
 <?php
 
-namespace BrainGames\Engine;
+namespace BrainGames\Games\Calc;
 
-class GameCalc extends GameBase
+function getGameTitle(): string
 {
-    public function getGameTitle()
-    {
-        return 'What is the result of the expression?';
-    }
+    return 'What is the result of the expression?';
+}
 
-    public function getQuestion()
-    {
-        $operators = ['+', '-', '*'];
-        $operand1 = rand(0, 100);
-        $operand2 = rand(0, 100);
-        $operator = $operators[rand(0, 2)];
-        return "Question: {$operand1} {$operator} {$operand2}";
-    }
+const RAND_MIN_VALUE = 0;
+const RAND_MAX_VALUE = 100;
 
-    public function getCorrectAnsver($question)
-    {
-        $aQuestion = explode(" ", $question);
-        $operand1 = $aQuestion[1];
-        $operator = $aQuestion[2];
-        $operand2 = $aQuestion[3];
-        switch ($operator) {
-            case '+':
-                return $operand1 + $operand2;
-                break;
-            case '*':
-                return $operand1 * $operand2;
-                break;
-            case '-':
-                return $operand1 - $operand2;
-                break;
-        }
+function getQuestion(): string
+{
+    $operators = ['+', '-', '*'];
+    $operand1 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
+    $operand2 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
+    $operator = $operators[rand(0, (count($operators) - 1))];
+    return "Question: {$operand1} {$operator} {$operand2}";
+}
+
+function calculate($operand1, $operand2, $operator): int
+{
+    switch ($operator) {
+        case '+':
+            return $operand1 + $operand2;
+            break;
+        case '*':
+            return $operand1 * $operand2;
+            break;
+        case '-':
+            return $operand1 - $operand2;
+            break;
     }
-    public function isAnsverValid($ansver)
-    {
-        return is_numeric($ansver);
+}
+
+function getCorrectAnswer($question): string
+{
+    $aQuestion = explode(" ", $question);
+    $operand1 = $aQuestion[1];
+    $operator = $aQuestion[2];
+    $operand2 = $aQuestion[3];
+    return (string)calculate($operand1, $operand2, $operator);
+}
+
+function getQuestionsForGame(): array
+{
+    $questions = [];
+    for ($i = 0; $i < 3; $i++) {
+        $questions[] = getQuestion();
     }
+    return $questions;
+}
+
+function getCorrectAnswersForGame($questions): array
+{
+    $answers = [];
+    for ($i = 0; $i < 3; $i++) {
+        $answers[] = getCorrectAnswer($questions[$i]);
+    }
+    return $answers;
 }
