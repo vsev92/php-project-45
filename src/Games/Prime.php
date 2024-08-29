@@ -20,7 +20,7 @@ function isPrime(int $number)
 {
     $sqrtNumber = sqrt($number);
     for ($i = 2; $i < $sqrtNumber; $i++) {
-        if ($number % $i === 0) {
+        if (($number % $i) === 0) {
             return false;
         }
     }
