@@ -17,7 +17,7 @@ function getQuestion()
     return "Question: {$number1} {$number2}";
 }
 
-function getGcD($number1, $number2)
+function getGcD(int $number1, int $number2)
 {
     while ($number1 != 0 && $number2 != 0) {
         if ($number1 > $number2) {
@@ -29,7 +29,7 @@ function getGcD($number1, $number2)
     return ($number1 + $number2);
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
     $number1 = $aQuestion[1];
@@ -46,7 +46,7 @@ function getQuestionsForGame()
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions)
+function getCorrectAnswersForGame(array $questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

@@ -16,7 +16,7 @@ function getQuestion()
     return "Question: {$number}";
 }
 
-function isPrime($number)
+function isPrime(int $number)
 {
     $sqrtNumber = sqrt($number);
     for ($i = 2; $i < $sqrtNumber; $i++) {
@@ -27,7 +27,7 @@ function isPrime($number)
     return true;
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
     $number = $aQuestion[1];
@@ -45,7 +45,7 @@ function getQuestionsForGame()
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions)
+function getCorrectAnswersForGame(array $questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

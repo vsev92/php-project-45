@@ -16,12 +16,12 @@ function getQuestion()
     return "Question: {$number}";
 }
 
-function isEven($number): bool
+function isEven(int $number)
 {
     return $number % 2 === 0;
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
     $number = $aQuestion[1];
@@ -37,7 +37,7 @@ function getQuestionsForGame()
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions)
+function getCorrectAnswersForGame(array $questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

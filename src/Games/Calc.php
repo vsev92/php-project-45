@@ -19,7 +19,7 @@ function getQuestion()
     return "Question: {$operand1} {$operator} {$operand2}";
 }
 
-function calculate($operand1, $operand2, $operator): int
+function calculate(int $operand1, int $operand2, string $operator)
 {
     switch ($operator) {
         case '+':
@@ -34,7 +34,7 @@ function calculate($operand1, $operand2, $operator): int
     }
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
     $operand1 = $aQuestion[1];
@@ -52,7 +52,7 @@ function getQuestionsForGame()
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions)
+function getCorrectAnswersForGame(array $questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

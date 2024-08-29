@@ -2,7 +2,7 @@
 
 namespace BrainGames\Games\Progression;
 
-function getGameTitle(): string
+function getGameTitle()
 {
     return 'What number is missing in the progression?';
 }
@@ -43,7 +43,7 @@ function getProgression()
     return $progression;
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
     $difference = 0;
@@ -74,7 +74,7 @@ function getQuestionsForGame()
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions)
+function getCorrectAnswersForGame(array $questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {
