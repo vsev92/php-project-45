@@ -2,7 +2,7 @@
 
 namespace BrainGames\Games\Calc;
 
-function getGameTitle(): string
+function getGameTitle()
 {
     return 'What is the result of the expression?';
 }
@@ -10,7 +10,7 @@ function getGameTitle(): string
 const RAND_MIN_VALUE = 0;
 const RAND_MAX_VALUE = 100;
 
-function getQuestion(): string
+function getQuestion()
 {
     $operators = ['+', '-', '*'];
     $operand1 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
@@ -34,7 +34,7 @@ function calculate($operand1, $operand2, $operator): int
     }
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer($question)
 {
     $aQuestion = explode(" ", $question);
     $operand1 = $aQuestion[1];
@@ -43,7 +43,7 @@ function getCorrectAnswer($question): string
     return (string)calculate($operand1, $operand2, $operator);
 }
 
-function getQuestionsForGame(): array
+function getQuestionsForGame()
 {
     $questions = [];
     for ($i = 0; $i < 3; $i++) {
@@ -52,7 +52,7 @@ function getQuestionsForGame(): array
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions): array
+function getCorrectAnswersForGame($questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

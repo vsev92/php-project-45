@@ -2,7 +2,7 @@
 
 namespace BrainGames\Games\Prime;
 
-function getGameTitle(): string
+function getGameTitle()
 {
     return 'Answer "yes" if given number is prime. Otherwise answer "no".';
 }
@@ -10,13 +10,13 @@ function getGameTitle(): string
 const RAND_MIN_VALUE = 0;
 const RAND_MAX_VALUE = 1000;
 
-function getQuestion(): string
+function getQuestion()
 {
     $number = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     return "Question: {$number}";
 }
 
-function isPrime($number): bool
+function isPrime($number)
 {
     $sqrtNumber = sqrt($number);
     for ($i = 2; $i < $sqrtNumber; $i++) {
@@ -27,7 +27,7 @@ function isPrime($number): bool
     return true;
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer($question)
 {
     $aQuestion = explode(" ", $question);
     $number = $aQuestion[1];
@@ -36,7 +36,7 @@ function getCorrectAnswer($question): string
 
 
 
-function getQuestionsForGame(): array
+function getQuestionsForGame()
 {
     $questions = [];
     for ($i = 0; $i < 3; $i++) {
@@ -45,7 +45,7 @@ function getQuestionsForGame(): array
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions): array
+function getCorrectAnswersForGame($questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

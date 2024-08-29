@@ -2,7 +2,7 @@
 
 namespace BrainGames\Games\Gcd;
 
-function getGameTitle(): string
+function getGameTitle()
 {
     return 'Find the greatest common divisor of given numbers.';
 }
@@ -10,14 +10,14 @@ function getGameTitle(): string
 const RAND_MIN_VALUE = 0;
 const RAND_MAX_VALUE = 100;
 
-function getQuestion(): string
+function getQuestion()
 {
     $number1 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     $number2 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     return "Question: {$number1} {$number2}";
 }
 
-function getGcD($number1, $number2): int
+function getGcD($number1, $number2)
 {
     while ($number1 != 0 && $number2 != 0) {
         if ($number1 > $number2) {
@@ -29,15 +29,15 @@ function getGcD($number1, $number2): int
     return ($number1 + $number2);
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer($question)
 {
     $aQuestion = explode(" ", $question);
-    $number1 = (int)$aQuestion[1];
-    $number2 = (int)$aQuestion[2];
+    $number1 = $aQuestion[1];
+    $number2 = $aQuestion[2];
     return (string)getGcD($number1, $number2);
 }
 
-function getQuestionsForGame(): array
+function getQuestionsForGame()
 {
     $questions = [];
     for ($i = 0; $i < 3; $i++) {
@@ -46,7 +46,7 @@ function getQuestionsForGame(): array
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions): array
+function getCorrectAnswersForGame($questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

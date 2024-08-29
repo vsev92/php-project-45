@@ -2,7 +2,7 @@
 
 namespace BrainGames\Games\Even;
 
-function getGameTitle(): string
+function getGameTitle()
 {
     return 'Answer "yes" if the number is even, otherwise answer "no".';
 }
@@ -10,7 +10,7 @@ function getGameTitle(): string
 const RAND_MIN_VALUE = 0;
 const RAND_MAX_VALUE = 100;
 
-function getQuestion(): string
+function getQuestion()
 {
     $number = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     return "Question: {$number}";
@@ -21,14 +21,14 @@ function isEven($number): bool
     return $number % 2 === 0;
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer($question)
 {
     $aQuestion = explode(" ", $question);
     $number = $aQuestion[1];
     return isEven($number) ?  'yes' : 'no';
 }
 
-function getQuestionsForGame(): array
+function getQuestionsForGame()
 {
     $questions = [];
     for ($i = 0; $i < 3; $i++) {
@@ -37,7 +37,7 @@ function getQuestionsForGame(): array
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions): array
+function getCorrectAnswersForGame($questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {

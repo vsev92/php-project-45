@@ -12,7 +12,7 @@ const ELEMENT_MAX_VALUE = 100;
 const PROGRESSION_LENGHT_MIN_VALUE = 5;
 const PROGRESSION_LENGHT_MAX_VALUE = 10;
 
-function getQuestion(): string
+function getQuestion()
 {
     $progression = getProgression();
     $progressionLenght = count($progression);
@@ -25,7 +25,7 @@ function getQuestion(): string
     return $question;
 }
 
-function getProgression(): array
+function getProgression()
 {
     $element = rand(ELEMENT_MIN_VALUE, ELEMENT_MAX_VALUE);
     $progressionLenght = rand(PROGRESSION_LENGHT_MIN_VALUE, PROGRESSION_LENGHT_MAX_VALUE);
@@ -43,7 +43,7 @@ function getProgression(): array
     return $progression;
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer($question)
 {
     $aQuestion = explode(" ", $question);
     $difference = 0;
@@ -57,15 +57,15 @@ function getCorrectAnswer($question): string
     for ($i = 1; $i < $aLen; $i++) {
         if ($aQuestion[$i] === '..') {
             if ($i === $aLen - 1) {
-                return $aQuestion[$i - 1] + $difference;
+                return (string)($aQuestion[$i - 1] + $difference);
             } else {
-                return $aQuestion[$i + 1] - $difference;
+                return (string)($aQuestion[$i + 1] - $difference);
             }
         }
     }
 }
 
-function getQuestionsForGame(): array
+function getQuestionsForGame()
 {
     $questions = [];
     for ($i = 0; $i < 3; $i++) {
@@ -74,7 +74,7 @@ function getQuestionsForGame(): array
     return $questions;
 }
 
-function getCorrectAnswersForGame($questions): array
+function getCorrectAnswersForGame($questions)
 {
     $answers = [];
     for ($i = 0; $i < 3; $i++) {
