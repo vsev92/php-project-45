@@ -62,9 +62,9 @@ function getCorrectAnswer(string $question)
     for ($i = 1; $i < $aLen; $i++) {
         if ($aQuestion[$i] === '..') {
             if ($i === $aLen - 1) {
-                return (string)(($aQuestion[$i - 1] + $difference));
+                return (string)(((int)$aQuestion[$i - 1] + $difference));
             } else {
-                return (string)(($aQuestion[$i + 1] - $difference));
+                return (string)(((int)$aQuestion[$i + 1] - $difference));
             }
         }
     }
