@@ -32,8 +32,8 @@ function getGcD(int $number1, int $number2)
 function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
-    $number1 = $aQuestion[1];
-    $number2 = $aQuestion[2];
+    $number1 = (int)$aQuestion[1];
+    $number2 = (int)$aQuestion[2];
     return (string)getGcD($number1, $number2);
 }
 

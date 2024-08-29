@@ -7,10 +7,7 @@ function getGameTitle()
     return 'What number is missing in the progression?';
 }
 
-const ELEMENT_MIN_VALUE = 0;
-const ELEMENT_MAX_VALUE = 100;
-const PROGRESSION_LENGHT_MIN_VALUE = 5;
-const PROGRESSION_LENGHT_MAX_VALUE = 10;
+
 
 function getQuestion()
 {
@@ -25,12 +22,20 @@ function getQuestion()
     return $question;
 }
 
+const ELEMENT_MIN_VALUE = 0;
+const ELEMENT_MAX_VALUE = 100;
+const PROGRESSION_LENGHT_MIN_VALUE = 5;
+const PROGRESSION_LENGHT_MAX_VALUE = 10;
+const PROGRESSION_DIFFERENCE_MIN_VALUE = -5;
+const PROGRESSION_DIFFERENCE_MAX_VALUE = 5;
+
 function getProgression()
 {
     $element = rand(ELEMENT_MIN_VALUE, ELEMENT_MAX_VALUE);
     $progressionLenght = rand(PROGRESSION_LENGHT_MIN_VALUE, PROGRESSION_LENGHT_MAX_VALUE);
+    $difference = 0;
     for (;;) {
-        $difference = rand(-5, 5);
+        $difference = rand(PROGRESSION_DIFFERENCE_MIN_VALUE, PROGRESSION_DIFFERENCE_MAX_VALUE);
         if ($difference !== 0) {
             break;
         }
@@ -57,9 +62,9 @@ function getCorrectAnswer(string $question)
     for ($i = 1; $i < $aLen; $i++) {
         if ($aQuestion[$i] === '..') {
             if ($i === $aLen - 1) {
-                return (string)($aQuestion[$i - 1] + $difference);
+                return (string)(($aQuestion[$i - 1] + $difference));
             } else {
-                return (string)($aQuestion[$i + 1] - $difference);
+                return (string)(($aQuestion[$i + 1] - $difference));
             }
         }
     }

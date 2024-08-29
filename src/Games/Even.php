@@ -24,7 +24,7 @@ function isEven(int $number)
 function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
-    $number = $aQuestion[1];
+    $number = (int)$aQuestion[1];
     return isEven($number) ?  'yes' : 'no';
 }
 

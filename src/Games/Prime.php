@@ -30,7 +30,7 @@ function isPrime(int $number)
 function getCorrectAnswer(string $question)
 {
     $aQuestion = explode(" ", $question);
-    $number = $aQuestion[1];
+    $number = (int)$aQuestion[1];
     return isPrime($number) ? 'yes' : 'no';
 }
 

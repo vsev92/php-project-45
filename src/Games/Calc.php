@@ -24,13 +24,10 @@ function calculate(int $operand1, int $operand2, string $operator)
     switch ($operator) {
         case '+':
             return $operand1 + $operand2;
-            break;
         case '*':
             return $operand1 * $operand2;
-            break;
         case '-':
             return $operand1 - $operand2;
-            break;
     }
 }
 
@@ -40,7 +37,7 @@ function getCorrectAnswer(string $question)
     $operand1 = $aQuestion[1];
     $operator = $aQuestion[2];
     $operand2 = $aQuestion[3];
-    return (string)calculate($operand1, $operand2, $operator);
+    return (string)calculate((int)$operand1, (int)$operand2, $operator);
 }
 
 function getQuestionsForGame()
