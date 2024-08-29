@@ -13,7 +13,7 @@ function greet()
     return $name;
 }
 
-function isCorrectAnswer($question, $correctAnswer, $userAnswer)
+function isCorrectAnswer(string $question, string $correctAnswer, string $userAnswer)
 {
     if ($userAnswer === $correctAnswer) {
         line("Correct!");
@@ -24,7 +24,7 @@ function isCorrectAnswer($question, $correctAnswer, $userAnswer)
     }
 }
 
-function playBrainGame($gameTitle, $questions, $correctAnswers)
+function playBrainGame(string $gameTitle, array $questions, array $correctAnswers)
 {
     $name = greet();
     line($gameTitle);
