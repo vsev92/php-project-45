@@ -2,88 +2,51 @@
 
 namespace BrainGames\Games\Progression;
 
+use  function BrainGames\Engine\playBrainGame as playBrainGame;
+
+function runGame()
+{
+    playBrainGame('BrainGames\Games\Progression\getGameTitle', 'BrainGames\Games\Progression\getQuestAndAnswer');
+}
+
 function getGameTitle()
 {
     return 'What number is missing in the progression?';
 }
 
 
+const ELEMENT_MIN_VALUE = 0;
+const ELEMENT_MAX_VALUE = 100;
+const PROGRESSION_LENGTH_MIN_VALUE = 5;
+const PROGRESSION_LENGTH_MAX_VALUE = 10;
+const PROGRESSION_STEPS = [-5, -4, -3, -2, -1 , 1, 2, 3, 4, 5];
 
-function getQuestion()
+function getProgression()
 {
+    $startElement = rand(ELEMENT_MIN_VALUE, ELEMENT_MAX_VALUE);
+    $progressionLength = rand(PROGRESSION_LENGTH_MIN_VALUE, PROGRESSION_LENGTH_MAX_VALUE);
+    $step = PROGRESSION_STEPS[array_rand(PROGRESSION_STEPS)];
+    $endElement = $startElement + $step * ($progressionLength - 1);
+    return range($startElement, $endElement, $step);
+}
+
+
+function getQuestAndAnswer()
+{
+    $questAndAnsw = [];
     $progression = getProgression();
-    $progressionLenght = count($progression);
-    $hidenElementPos = rand(0, $progressionLenght - 1);
-    $progression[$hidenElementPos] = '..';
+    $progressionLength = count($progression);
+    $hiddenElementPosition = rand(0, $progressionLength - 1);
+
+    $questAndAnsw['answer'] = (string)$progression[$hiddenElementPosition];
+
+    $progression[$hiddenElementPosition] = '..';
     $question = "Question:";
     foreach ($progression as $element) {
         $question = $question . ' ' . $element;
     }
-    return $question;
-}
 
-const ELEMENT_MIN_VALUE = 0;
-const ELEMENT_MAX_VALUE = 100;
-const PROGRESSION_LENGHT_MIN_VALUE = 5;
-const PROGRESSION_LENGHT_MAX_VALUE = 10;
-const PROGRESSION_DIFFERENCE_MIN_VALUE = -5;
-const PROGRESSION_DIFFERENCE_MAX_VALUE = 5;
+    $questAndAnsw['question'] = $question;
 
-function getProgression()
-{
-    $element = rand(ELEMENT_MIN_VALUE, ELEMENT_MAX_VALUE);
-    $progressionLenght = rand(PROGRESSION_LENGHT_MIN_VALUE, PROGRESSION_LENGHT_MAX_VALUE);
-    $difference = 0;
-    for (;;) {
-        $difference = rand(PROGRESSION_DIFFERENCE_MIN_VALUE, PROGRESSION_DIFFERENCE_MAX_VALUE);
-        if ($difference !== 0) {
-            break;
-        }
-    }
-    $progression = [];
-    for ($i = 0; $i < $progressionLenght; $i++) {
-        $progression[] = $element;
-        $element += $difference;
-    }
-    return $progression;
-}
-
-function getCorrectAnswer(string $question)
-{
-    $aQuestion = explode(" ", $question);
-    $difference = 0;
-    $aLen = count($aQuestion);
-    for ($i = 2; $i < $aLen; $i++) {
-        if (($aQuestion[$i] !== '..') && ($aQuestion[$i - 1] !== '..')) {
-            $difference = (int)$aQuestion[$i] - (int)$aQuestion[$i - 1];
-            break;
-        }
-    }
-    for ($i = 1; $i < $aLen; $i++) {
-        if ($aQuestion[$i] === '..') {
-            if ($i === $aLen - 1) {
-                return (string)(((int)$aQuestion[$i - 1] + $difference));
-            } else {
-                return (string)(((int)$aQuestion[$i + 1] - $difference));
-            }
-        }
-    }
-}
-
-function getQuestionsForGame()
-{
-    $questions = [];
-    for ($i = 0; $i < 3; $i++) {
-        $questions[] = getQuestion();
-    }
-    return $questions;
-}
-
-function getCorrectAnswersForGame(array $questions)
-{
-    $answers = [];
-    for ($i = 0; $i < 3; $i++) {
-        $answers[] = getCorrectAnswer($questions[$i]);
-    }
-    return $answers;
+    return $questAndAnsw;
 }

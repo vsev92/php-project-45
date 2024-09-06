@@ -2,22 +2,20 @@
 
 namespace BrainGames\Games\Calc;
 
+use  function BrainGames\Engine\playBrainGame as playBrainGame;
+
+function runGame()
+{
+    playBrainGame('BrainGames\Games\Calc\getGameTitle', 'BrainGames\Games\Calc\getQuestAndAnswer');
+}
+
+
 function getGameTitle()
 {
     return 'What is the result of the expression?';
 }
 
-const RAND_MIN_VALUE = 0;
-const RAND_MAX_VALUE = 100;
 
-function getQuestion()
-{
-    $operators = ['+', '-', '*'];
-    $operand1 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
-    $operand2 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
-    $operator = $operators[rand(0, (count($operators) - 1))];
-    return "Question: {$operand1} {$operator} {$operand2}";
-}
 
 function calculate(int $operand1, int $operand2, string $operator)
 {
@@ -28,32 +26,23 @@ function calculate(int $operand1, int $operand2, string $operator)
             return $operand1 * $operand2;
         case '-':
             return $operand1 - $operand2;
+        default:
+            break;
     }
+    return null;
 }
 
-function getCorrectAnswer(string $question)
-{
-    $aQuestion = explode(" ", $question);
-    $operand1 = $aQuestion[1];
-    $operator = $aQuestion[2];
-    $operand2 = $aQuestion[3];
-    return (string)calculate((int)$operand1, (int)$operand2, $operator);
-}
+const RAND_MIN_VALUE = 0;
+const RAND_MAX_VALUE = 100;
 
-function getQuestionsForGame()
+function getQuestAndAnswer()
 {
-    $questions = [];
-    for ($i = 0; $i < 3; $i++) {
-        $questions[] = getQuestion();
-    }
-    return $questions;
-}
-
-function getCorrectAnswersForGame(array $questions)
-{
-    $answers = [];
-    for ($i = 0; $i < 3; $i++) {
-        $answers[] = getCorrectAnswer($questions[$i]);
-    }
-    return $answers;
+    $questAndAnsw = [];
+    $operators = ['+', '-', '*'];
+    $operand1 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
+    $operand2 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
+    $operator = $operators[array_rand($operators)];
+    $questAndAnsw['question'] = "Question: {$operand1} {$operator} {$operand2}";
+    $questAndAnsw['answer'] = (string)calculate((int)$operand1, (int)$operand2, $operator);
+    return $questAndAnsw;
 }

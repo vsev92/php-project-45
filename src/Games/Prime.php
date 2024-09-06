@@ -2,6 +2,13 @@
 
 namespace BrainGames\Games\Prime;
 
+use  function BrainGames\Engine\playBrainGame as playBrainGame;
+
+function runGame()
+{
+    playBrainGame('BrainGames\Games\Prime\getGameTitle', 'BrainGames\Games\Prime\getQuestAndAnswer');
+}
+
 function getGameTitle()
 {
     return 'Answer "yes" if given number is prime. Otherwise answer "no".';
@@ -10,46 +17,27 @@ function getGameTitle()
 const RAND_MIN_VALUE = 0;
 const RAND_MAX_VALUE = 1000;
 
-function getQuestion()
-{
-    $number = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
-    return "Question: {$number}";
-}
 
 function isPrime(int $number)
 {
-    $sqrtNumber = sqrt($number);
-    for ($i = 2; $i < $sqrtNumber; $i++) {
-        if ($number % $i == 0) {
+    if ($number < 2) {
+        return false;
+    }
+
+    for ($i = 2; $i <= $number / 2; $i++) {
+        if ($number % $i === 0) {
             return false;
         }
     }
+
     return true;
 }
 
-function getCorrectAnswer(string $question)
+function getQuestAndAnswer()
 {
-    $aQuestion = explode(" ", $question);
-    $number = (int)$aQuestion[1];
-    return isPrime($number) ? 'yes' : 'no';
-}
-
-
-
-function getQuestionsForGame()
-{
-    $questions = [];
-    for ($i = 0; $i < 3; $i++) {
-        $questions[] = getQuestion();
-    }
-    return $questions;
-}
-
-function getCorrectAnswersForGame(array $questions)
-{
-    $answers = [];
-    for ($i = 0; $i < 3; $i++) {
-        $answers[] = getCorrectAnswer($questions[$i]);
-    }
-    return $answers;
+    $questAndAnsw = [];
+    $number = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
+    $questAndAnsw['question'] = "Question: {$number}";
+    $questAndAnsw['answer'] = isPrime($number) ? 'yes' : 'no';
+    return $questAndAnsw;
 }

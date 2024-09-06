@@ -13,7 +13,7 @@ function greet()
     return $name;
 }
 
-function isCorrectAnswer(string $question, string $correctAnswer, string $userAnswer)
+function isCorrectAnswer(string $correctAnswer, string $userAnswer)
 {
     if ($userAnswer === $correctAnswer) {
         line("Correct!");
@@ -24,22 +24,20 @@ function isCorrectAnswer(string $question, string $correctAnswer, string $userAn
     }
 }
 
-function playBrainGame(string $gameTitle, array $questions, array $correctAnswers)
+const ROUNDS_COUNT = 3;
+
+function playBrainGame(string $getGameTitle, string $getQuestionAndAnswer)
 {
     $name = greet();
-    line($gameTitle);
-    $correctUserAnswersCount = 0;
-    for ($i = 0; $i < 3; $i++) {
-        line($questions[$i]);
+    line($getGameTitle());
+    for ($i = 1; $i <= ROUNDS_COUNT; $i++) {
+        $questAndAnswer = $getQuestionAndAnswer();
+        line($questAndAnswer['question']);
         $userAnswer = prompt('Your answer');
-        if (isCorrectAnswer($questions[$i], $correctAnswers[$i], $userAnswer)) {
-            $correctUserAnswersCount++;
-        } else {
+        if (!isCorrectAnswer($questAndAnswer['answer'], $userAnswer)) {
             line("Let's try again, {$name}!");
-            break;
+            return;
         }
     }
-    if ($correctUserAnswersCount === 3) {
-        line("Congratulations, {$name}!");
-    }
+    line("Congratulations, {$name}!");
 }

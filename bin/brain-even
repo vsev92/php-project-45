@@ -8,8 +8,4 @@ if (file_exists($autoloadPath1)) {
 } else {
     require_once $autoloadPath2;
 }
-
-$gameTitle = BrainGames\Games\Even\getGameTitle();
-$questions = BrainGames\Games\Even\getQuestionsForGame();
-$correctAnswers = BrainGames\Games\Even\getCorrectAnswersForGame($questions);
-BrainGames\Engine\playBrainGame($gameTitle, $questions, $correctAnswers);
+BrainGames\Games\Even\runGame();

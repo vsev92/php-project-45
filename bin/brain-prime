@@ -8,7 +8,4 @@ if (file_exists($autoloadPath1)) {
 } else {
     require_once $autoloadPath2;
 }
-$gameTitle = BrainGames\Games\Prime\getGameTitle();
-$questions = BrainGames\Games\Prime\getQuestionsForGame();
-$correctAnswers = BrainGames\Games\Prime\getCorrectAnswersForGame($questions);
-BrainGames\Engine\playBrainGame($gameTitle, $questions, $correctAnswers);
+BrainGames\Games\Prime\runGame();
