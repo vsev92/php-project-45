@@ -26,7 +26,7 @@ function isCorrectAnswer(string $correctAnswer, string $userAnswer)
 
 const ROUNDS_COUNT = 3;
 
-function playBrainGame(string $getGameTitle, string $getQuestionAndAnswer)
+function playBrainGame(callable $getGameTitle, callable $getQuestionAndAnswer)
 {
     $name = greet();
     line($getGameTitle());

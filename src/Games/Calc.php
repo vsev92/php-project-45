@@ -43,6 +43,6 @@ function getQuestAndAnswer()
     $operand2 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     $operator = $operators[array_rand($operators)];
     $questAndAnsw['question'] = "Question: {$operand1} {$operator} {$operand2}";
-    $questAndAnsw['answer'] = (string)calculate((int)$operand1, (int)$operand2, $operator);
+    $questAndAnsw['answer'] = (string)calculate($operand1, $operand2, $operator);
     return $questAndAnsw;
 }
