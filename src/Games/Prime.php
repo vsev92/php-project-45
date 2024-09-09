@@ -6,7 +6,7 @@ use  function BrainGames\Engine\playBrainGame as playBrainGame;
 
 function runGame()
 {
-    playBrainGame('BrainGames\Games\Prime\getGameTitle', 'BrainGames\Games\Prime\getQuestAndAnswer');
+    playBrainGame(getGameTitle(), 'BrainGames\Games\Prime\getQuestAndAnswer');
 }
 
 function getGameTitle()

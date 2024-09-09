@@ -26,10 +26,10 @@ function isCorrectAnswer(string $correctAnswer, string $userAnswer)
 
 const ROUNDS_COUNT = 3;
 
-function playBrainGame(callable $getGameTitle, callable $getQuestionAndAnswer)
+function playBrainGame(string $gameTitle, callable $getQuestionAndAnswer)
 {
     $name = greet();
-    line($getGameTitle());
+    line($gameTitle);
     for ($i = 1; $i <= ROUNDS_COUNT; $i++) {
         $questAndAnswer = $getQuestionAndAnswer();
         line($questAndAnswer['question']);
