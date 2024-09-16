@@ -2,6 +2,8 @@
 
 namespace BrainGames\Games\Calc;
 
+use InvalidArgumentException;
+
 use  function BrainGames\Engine\playBrainGame;
 
 const GAME_TITLE = 'What is the result of the expression?';
