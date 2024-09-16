@@ -2,16 +2,13 @@
 
 namespace BrainGames\Games\Even;
 
-use  function BrainGames\Engine\playBrainGame as playBrainGame;
+use  function BrainGames\Engine\playBrainGame;
+
+const GAME_TITLE = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function runGame()
 {
-    playBrainGame(getGameTitle(), 'BrainGames\Games\Even\getQuestAndAnswer');
-}
-
-function getGameTitle()
-{
-    return 'Answer "yes" if the number is even, otherwise answer "no".';
+    playBrainGame(GAME_TITLE, 'BrainGames\Games\Even\getQuestAndAnswer');
 }
 
 const RAND_MIN_VALUE = 0;
@@ -24,9 +21,9 @@ function isEven(int $number)
 
 function getQuestAndAnswer()
 {
-    $questAndAnsw = [];
+    $result = [];
     $number = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
-    $questAndAnsw['question'] = "Question: {$number}";
-    $questAndAnsw['answer'] = isEven($number) ?  'yes' : 'no';
-    return $questAndAnsw;
+    $result['question'] = "Question: {$number}";
+    $result['answer'] = isEven($number) ?  'yes' : 'no';
+    return $result;
 }

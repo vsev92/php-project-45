@@ -2,20 +2,14 @@
 
 namespace BrainGames\Games\Calc;
 
-use  function BrainGames\Engine\playBrainGame as playBrainGame;
+use  function BrainGames\Engine\playBrainGame;
+
+const GAME_TITLE = 'What is the result of the expression?';
 
 function runGame()
 {
-    playBrainGame(getGameTitle(), 'BrainGames\Games\Calc\getQuestAndAnswer');
+    playBrainGame(GAME_TITLE, 'BrainGames\Games\Calc\getQuestAndAnswer');
 }
-
-
-function getGameTitle()
-{
-    return 'What is the result of the expression?';
-}
-
-
 
 function calculate(int $operand1, int $operand2, string $operator)
 {
@@ -27,9 +21,8 @@ function calculate(int $operand1, int $operand2, string $operator)
         case '-':
             return $operand1 - $operand2;
         default:
-            break;
+            throw new Exception('Wrong operator');
     }
-    return null;
 }
 
 const RAND_MIN_VALUE = 0;
@@ -37,12 +30,12 @@ const RAND_MAX_VALUE = 100;
 
 function getQuestAndAnswer()
 {
-    $questAndAnsw = [];
+    $result = [];
     $operators = ['+', '-', '*'];
     $operand1 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     $operand2 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     $operator = $operators[array_rand($operators)];
-    $questAndAnsw['question'] = "Question: {$operand1} {$operator} {$operand2}";
-    $questAndAnsw['answer'] = (string)calculate($operand1, $operand2, $operator);
-    return $questAndAnsw;
+    $result['question'] = "Question: {$operand1} {$operator} {$operand2}";
+    $result['answer'] = (string)calculate($operand1, $operand2, $operator);
+    return $result;
 }

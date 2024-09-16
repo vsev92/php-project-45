@@ -2,16 +2,13 @@
 
 namespace BrainGames\Games\Prime;
 
-use  function BrainGames\Engine\playBrainGame as playBrainGame;
+use  function BrainGames\Engine\playBrainGame;
+
+const GAME_TITLE = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function runGame()
 {
-    playBrainGame(getGameTitle(), 'BrainGames\Games\Prime\getQuestAndAnswer');
-}
-
-function getGameTitle()
-{
-    return 'Answer "yes" if given number is prime. Otherwise answer "no".';
+    playBrainGame(GAME_TITLE, 'BrainGames\Games\Prime\getQuestAndAnswer');
 }
 
 const RAND_MIN_VALUE = 0;
@@ -35,9 +32,9 @@ function isPrime(int $number)
 
 function getQuestAndAnswer()
 {
-    $questAndAnsw = [];
+    $result = [];
     $number = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
-    $questAndAnsw['question'] = "Question: {$number}";
-    $questAndAnsw['answer'] = isPrime($number) ? 'yes' : 'no';
-    return $questAndAnsw;
+    $result['question'] = "Question: {$number}";
+    $result['answer'] = isPrime($number) ? 'yes' : 'no';
+    return $result;
 }

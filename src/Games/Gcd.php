@@ -2,16 +2,13 @@
 
 namespace BrainGames\Games\Gcd;
 
-use  function BrainGames\Engine\playBrainGame as playBrainGame;
+use  function BrainGames\Engine\playBrainGame;
+
+const GAME_TITLE = 'Find the greatest common divisor of given numbers.';
 
 function runGame()
 {
-    playBrainGame(getGameTitle(), 'BrainGames\Games\Gcd\getQuestAndAnswer');
-}
-
-function getGameTitle()
-{
-    return 'Find the greatest common divisor of given numbers.';
+    playBrainGame(GAME_TITLE, 'BrainGames\Games\Gcd\getQuestAndAnswer');
 }
 
 const RAND_MIN_VALUE = 1;
@@ -31,10 +28,10 @@ function getGcD(int $number1, int $number2)
 
 function getQuestAndAnswer()
 {
-    $questAndAnsw = [];
+    $result = [];
     $number1 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
     $number2 = rand(RAND_MIN_VALUE, RAND_MAX_VALUE);
-    $questAndAnsw['question'] = "Question: {$number1} {$number2}";
-    $questAndAnsw['answer'] = (string)getGcD($number1, $number2);
-    return $questAndAnsw;
+    $result['question'] = "Question: {$number1} {$number2}";
+    $result['answer'] = (string)getGcD($number1, $number2);
+    return $result;
 }

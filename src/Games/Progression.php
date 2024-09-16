@@ -2,18 +2,14 @@
 
 namespace BrainGames\Games\Progression;
 
-use  function BrainGames\Engine\playBrainGame as playBrainGame;
+use  function BrainGames\Engine\playBrainGame;
+
+const GAME_TITLE = 'What number is missing in the progression?';
 
 function runGame()
 {
-    playBrainGame(getGameTitle(), 'BrainGames\Games\Progression\getQuestAndAnswer');
+    playBrainGame(GAME_TITLE, 'BrainGames\Games\Progression\getQuestAndAnswer');
 }
-
-function getGameTitle()
-{
-    return 'What number is missing in the progression?';
-}
-
 
 const ELEMENT_MIN_VALUE = 0;
 const ELEMENT_MAX_VALUE = 100;
@@ -33,12 +29,12 @@ function getProgression()
 
 function getQuestAndAnswer()
 {
-    $questAndAnsw = [];
+    $result = [];
     $progression = getProgression();
     $progressionLength = count($progression);
     $hiddenElementPosition = rand(0, $progressionLength - 1);
 
-    $questAndAnsw['answer'] = (string)$progression[$hiddenElementPosition];
+    $result['answer'] = (string)$progression[$hiddenElementPosition];
 
     $progression[$hiddenElementPosition] = '..';
     $question = "Question:";
@@ -46,7 +42,7 @@ function getQuestAndAnswer()
         $question = $question . ' ' . $element;
     }
 
-    $questAndAnsw['question'] = $question;
+    $result['question'] = $question;
 
-    return $questAndAnsw;
+    return $result;
 }
