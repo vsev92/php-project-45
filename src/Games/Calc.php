@@ -21,7 +21,7 @@ function calculate(int $operand1, int $operand2, string $operator)
         case '-':
             return $operand1 - $operand2;
         default:
-            throw new Exception('Wrong operator');
+            throw new InvalidArgumentException('Wrong operator');
     }
 }
 
